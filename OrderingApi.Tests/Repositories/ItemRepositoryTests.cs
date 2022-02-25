@@ -65,11 +65,12 @@ namespace OrderingApi.Tests
             double price = 100;
             string desc = "TestDescription 6";
 
-            var expectedItem = CreateItem(Guid.NewGuid(), name, price, desc, Categories.Sanitary);
+            
             var items = await _sut.GetItemsAsync();
 
             var originalItem = items.First();
-            var newItem = _sut.UpdateItemAsync(originalItem.Id, expectedItem);
+            var expectedItem = CreateItem(originalItem.Id, name, price, desc, Categories.Sanitary);
+            var newItem = await _sut.UpdateItemAsync(expectedItem);
             
         }
 

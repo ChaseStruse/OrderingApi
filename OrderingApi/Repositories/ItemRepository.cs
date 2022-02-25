@@ -52,5 +52,12 @@ namespace OrderingApi.Repositories
 
             return item.Id;
         }
+
+        public async Task<Guid> UpdateItemAsync(Item newItem)
+        {
+            var index = Items.FindIndex(x => x.Id == newItem.Id);
+            Items[index] = newItem;
+            return newItem.Id;
+        }
     }
 }
