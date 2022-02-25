@@ -44,5 +44,13 @@ namespace OrderingApi.Repositories
         {
             return Items.Where(x => x.Id == id).FirstOrDefault();
         }
+
+        public async Task<Guid> AddItemAsync( string name, double price, string desc, Categories category)
+        {
+            var item = CreateItem(name, price, desc, category);
+            Items.Add(item);
+
+            return item.Id;
+        }
     }
 }

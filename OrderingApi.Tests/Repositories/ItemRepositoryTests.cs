@@ -44,7 +44,20 @@ namespace OrderingApi.Tests
 
             actual.Should().BeEquivalentTo(expected);
         }
-        
+
+        [Fact]
+        public async void AddItemAsync_CreatesItem()
+        {
+            string name = "TestName 5";
+            double price = 100;
+            string desc = "TestDescription 5";
+
+            var id = await _sut.AddItemAsync(name, price, desc, Categories.Grocery);
+
+            var actual = await _sut.GetItemAsync(id);
+            var expected = CreateItem(id, name, price, desc, Categories.Grocery);
+        }
+
         private static Item CreateItem(Guid? id, string name, double price, string description, Categories category)
         {
             var item = new Item

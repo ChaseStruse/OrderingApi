@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using OrderingApi.Enums;
 using OrderingApi.Models;
 
 namespace OrderingApi.Repositories
@@ -9,5 +10,6 @@ namespace OrderingApi.Repositories
     {
         Task<IEnumerable<Item>> GetItemsAsync();
         Task<Item> GetItemAsync(Guid id);
+        Task<Guid> AddItemAsync(string name, double price, string desc, Categories category);
     }
 }
