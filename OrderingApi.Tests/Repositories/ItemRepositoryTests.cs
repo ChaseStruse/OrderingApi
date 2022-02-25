@@ -74,6 +74,18 @@ namespace OrderingApi.Tests
             
         }
 
+        [Fact]
+        public async void DeleteItemAsync_DeletesItem()
+        {
+            var items = await _sut.GetItemsAsync();
+            var itemToDelete = items.First();
+
+            await _sut.DeleteItemAsync(itemToDelete.Id);
+
+            var actual = await _sut.GetItemsAsync();
+            actual.Should().NotBeEquivalentTo(items).And.HaveCountLessThan(items.Count());
+        }
+
         private static Item CreateItem(Guid? id, string name, double price, string description, Categories category)
         {
             var item = new Item
