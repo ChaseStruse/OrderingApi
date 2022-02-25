@@ -58,6 +58,21 @@ namespace OrderingApi.Tests
             var expected = CreateItem(id, name, price, desc, Categories.Grocery);
         }
 
+        [Fact]
+        public async void UpdateItemAsync_UpdatesItem()
+        {
+            string name = "TestName 6";
+            double price = 100;
+            string desc = "TestDescription 6";
+
+            var expectedItem = CreateItem(Guid.NewGuid(), name, price, desc, Categories.Sanitary);
+            var items = await _sut.GetItemsAsync();
+
+            var originalItem = items.First();
+            var newItem = _sut.UpdateItemAsync(originalItem.Id, expectedItem);
+            
+        }
+
         private static Item CreateItem(Guid? id, string name, double price, string description, Categories category)
         {
             var item = new Item
