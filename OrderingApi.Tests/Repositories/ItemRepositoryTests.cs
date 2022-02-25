@@ -19,7 +19,7 @@ namespace OrderingApi.Tests
         }
 
         [Fact]
-        public async void GetItems_ReturnsAllItems()
+        public async void GetItemsAsync_ReturnsAllItems()
         {
             var actual = await _sut.GetItemsAsync();
 
@@ -34,7 +34,16 @@ namespace OrderingApi.Tests
             actual.Should().NotBeNull().And.Equal(expected);
         }
 
-        
+        [Fact]
+        public async void GetItemAsync_ReturnsItem()
+        {
+            var items = await _sut.GetItemsAsync();
+
+            var expected = items.First();
+            var actual = _sut.GetItemAsync(expected.Id);
+
+            actual.Should().BeEquivalentTo(expected);
+        }
         
         private static Item CreateItem(Guid? id, string name, double price, string description, Categories category)
         {
