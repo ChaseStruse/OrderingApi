@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using OrderingApi.Models;
 using OrderingApi.Repositories;
 
 namespace OrderingApi.Controllers
@@ -10,6 +14,12 @@ namespace OrderingApi.Controllers
         public ItemController(IItemRepository _itemRepository)
         {
             itemRepository = _itemRepository;
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Item>> GetItemsAsync()
+        {
+            return null;
         }
     }
 }
