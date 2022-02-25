@@ -14,11 +14,13 @@ namespace OrderingApi.Tests.Controllers
     public class ItemControllerTests
     {
         private ItemController _sut;
-        private readonly Mock<IItemRepository> _repository;
+        private Mock<IItemRepository> _repository;
 
         [Fact]
         public async void GetItems_ReturnsListOfItems()
         {
+            _repository = new Mock<IItemRepository>();
+
             var expected = new[]
             {
                 CreateItem("Test1", 10, "Test desc 1", Categories.Cleaning),
@@ -31,7 +33,7 @@ namespace OrderingApi.Tests.Controllers
 
             _sut = new ItemController(_repository.Object);
 
-            var actual = _sut.GetItemsAsync();
+            var actual = await _sut.GetItemsAsync();
 
             actual.Should().BeEquivalentTo(expected);
         }

@@ -19,7 +19,8 @@ namespace OrderingApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<Item>> GetItemsAsync()
         {
-            return null;
+            var items = await itemRepository.GetItemsAsync();
+            return items;
         }
     }
 }
