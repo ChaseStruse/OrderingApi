@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using OrderingApi.Enums;
 using OrderingApi.Models;
@@ -20,11 +21,6 @@ namespace OrderingApi.Repositories
         {
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync()
-        {
-            return Items;
-        }
-
         private static Item CreateItem(string name, double price, string description, Categories category)
         {
             var item = new Item
@@ -37,6 +33,16 @@ namespace OrderingApi.Repositories
             };
 
             return item;
+        }
+
+        public async Task<IEnumerable<Item>> GetItemsAsync()
+        {
+            return Items;
+        }
+
+        public async Task<Item> GetItemAsync(Guid id)
+        {
+            return Items.Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }

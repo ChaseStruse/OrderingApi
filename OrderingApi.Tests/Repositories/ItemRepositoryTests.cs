@@ -40,7 +40,7 @@ namespace OrderingApi.Tests
             var items = await _sut.GetItemsAsync();
 
             var expected = items.First();
-            var actual = _sut.GetItemAsync(expected.Id);
+            var actual = await _sut.GetItemAsync(expected.Id);
 
             actual.Should().BeEquivalentTo(expected);
         }

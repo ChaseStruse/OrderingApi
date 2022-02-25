@@ -8,6 +8,6 @@ namespace OrderingApi.Repositories
     public interface IItemRepository
     {
         Task<IEnumerable<Item>> GetItemsAsync();
-        object GetItemAsync(Guid guid);
+        Task<Item> GetItemAsync(Guid id);
     }
 }
