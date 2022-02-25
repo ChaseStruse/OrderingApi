@@ -12,5 +12,6 @@ namespace OrderingApi.Repositories
         Task<Item> GetItemAsync(Guid id);
         Task<Guid> AddItemAsync(string name, double price, string desc, Categories category);
         Task<Guid> UpdateItemAsync(Item newItem);
+        Task DeleteItemAsync(Item item);
     }
 }

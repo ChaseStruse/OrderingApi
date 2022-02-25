@@ -59,5 +59,10 @@ namespace OrderingApi.Repositories
             Items[index] = newItem;
             return newItem.Id;
         }
+
+        public async Task DeleteItemAsync(Item item)
+        {
+            Items.Remove(item);
+        }
     }
 }

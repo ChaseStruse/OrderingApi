@@ -78,9 +78,9 @@ namespace OrderingApi.Tests
         public async void DeleteItemAsync_DeletesItem()
         {
             var items = await _sut.GetItemsAsync();
-            var itemToDelete = items.First();
+            var itemToDelete = items.Where(x => x.Name == "TestName 3").FirstOrDefault();
 
-            await _sut.DeleteItemAsync(itemToDelete.Id);
+            await _sut.DeleteItemAsync(itemToDelete);
 
             var actual = await _sut.GetItemsAsync();
             actual.Should().NotBeEquivalentTo(items).And.HaveCountLessThan(items.Count());
