@@ -7,7 +7,7 @@ using OrderingApi.Repositories;
 
 namespace OrderingApi.Controllers
 {
-    public class ItemController
+    public class ItemController : IItemController
     {
         private readonly IItemRepository itemRepository;
 
