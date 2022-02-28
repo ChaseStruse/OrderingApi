@@ -16,6 +16,12 @@ namespace OrderingApi.Controllers
             itemRepository = _itemRepository;
         }
 
+        public async Task<Item> GetItemAsync(Guid id)
+        {
+            var item = await itemRepository.GetItemAsync(id);
+            return item;
+        }
+
         [HttpGet]
         public async Task<IEnumerable<Item>> GetItemsAsync()
         {
